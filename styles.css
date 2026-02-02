@@ -1,40 +1,40 @@
 :root {
-    /* Dark mode colors (default) - Retro CRT Theme (Eye-Soothing) */
-    --bg-primary: #0a0a0a;
-    --bg-secondary: #131313;
-    --bg-tertiary: #1a1a1a;
-    --text-primary: #a8d5ba;
-    --text-secondary: #7fb89e;
-    --text-muted: #5a8a73;
-    --accent-primary: #6fd89c;
-    --accent-secondary: #5bb8d4;
-    --accent-gradient: linear-gradient(135deg, #6fd89c 0%, #5bb8d4 100%);
-    --border-color: #3d5a4a;
-    --shadow: rgba(111, 216, 156, 0.15);
-    --terminal-bg: #0d0d0d;
-    --terminal-border: #3d5a4a;
-    --card-bg: #121212;
-    --card-hover: #1a1a1a;
-    --glow: 0 0 8px var(--accent-primary);
+    /* Dark mode colors (default) - Black & White Theme */
+    --bg-primary: #000000;
+    --bg-secondary: #0a0a0a;
+    --bg-tertiary: #141414;
+    --text-primary: #ffffff;
+    --text-secondary: #d0d0d0;
+    --text-muted: #a0a0a0;
+    --accent-primary: #ffffff;
+    --accent-secondary: #e0e0e0;
+    --accent-gradient: linear-gradient(135deg, #ffffff 0%, #d0d0d0 100%);
+    --border-color: #333333;
+    --shadow: rgba(255, 255, 255, 0.1);
+    --terminal-bg: #000000;
+    --terminal-border: #333333;
+    --card-bg: #0a0a0a;
+    --card-hover: #141414;
+    --glow: 0 0 8px rgba(255, 255, 255, 0.3);
 }
 
 [data-theme="light"] {
-    --bg-primary: #f5f5dc;
-    --bg-secondary: #ede8d5;
-    --bg-tertiary: #e5e0c8;
-    --text-primary: #2a2a2a;
-    --text-secondary: #4a4a4a;
-    --text-muted: #7a7a7a;
-    --accent-primary: #ff6b35;
-    --accent-secondary: #f7931e;
-    --accent-gradient: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
-    --border-color: #d4a574;
-    --shadow: rgba(0, 0, 0, 0.2);
-    --terminal-bg: #ede8d5;
-    --terminal-border: #d4a574;
-    --card-bg: #faf8f0;
-    --card-hover: #f0ede0;
-    --glow: 0 0 10px var(--accent-primary);
+    --bg-primary: #ffffff;
+    --bg-secondary: #f5f5f5;
+    --bg-tertiary: #e8e8e8;
+    --text-primary: #000000;
+    --text-secondary: #1a1a1a;
+    --text-muted: #4a4a4a;
+    --accent-primary: #000000;
+    --accent-secondary: #1a1a1a;
+    --accent-gradient: linear-gradient(135deg, #000000 0%, #333333 100%);
+    --border-color: #d0d0d0;
+    --shadow: rgba(0, 0, 0, 0.15);
+    --terminal-bg: #ffffff;
+    --terminal-border: #d0d0d0;
+    --card-bg: #f5f5f5;
+    --card-hover: #e8e8e8;
+    --glow: 0 0 8px rgba(0, 0, 0, 0.2);
 }
 
 * {
@@ -174,8 +174,8 @@ body::after {
     transform: scale(1.15) rotate(5deg);
     border-color: var(--accent-primary);
     box-shadow:
-        0 0 12px var(--accent-primary),
-        inset 0 0 10px rgba(111, 216, 156, 0.15);
+        0 0 12px var(--shadow),
+        inset 0 0 10px var(--shadow);
 }
 
 .theme-toggle .sun-icon {
@@ -218,7 +218,7 @@ body::after {
 }
 
 [data-theme="light"] .nav {
-    background: rgba(245, 245, 220, 0.95);
+    background: rgba(255, 255, 255, 0.95);
 }
 
 .nav-container {
@@ -314,8 +314,8 @@ body::after {
     border: 3px solid var(--terminal-border);
     overflow: hidden;
     box-shadow:
-        0 0 12px var(--accent-primary),
-        inset 0 0 15px rgba(111, 216, 156, 0.08);
+        0 0 12px var(--shadow),
+        inset 0 0 15px var(--shadow);
     clip-path: polygon(
         0% 5%, 5% 0%, 95% 0%, 100% 5%,
         100% 95%, 95% 100%, 5% 100%, 0% 95%
@@ -632,8 +632,8 @@ body::after {
     transform: translateY(-4px);
     border-color: var(--accent-primary);
     box-shadow:
-        0 0 10px var(--accent-primary),
-        inset 0 0 6px rgba(111, 216, 156, 0.08);
+        0 0 10px var(--shadow),
+        inset 0 0 6px var(--shadow);
 }
 
 .highlight-icon {
@@ -674,8 +674,8 @@ body::after {
     transform: translateY(-4px);
     border-color: var(--accent-primary);
     box-shadow:
-        0 0 10px var(--accent-primary),
-        inset 0 0 6px rgba(111, 216, 156, 0.08);
+        0 0 10px var(--shadow),
+        inset 0 0 6px var(--shadow);
 }
 
 .skill-category-title {
@@ -746,8 +746,8 @@ body::after {
     transform: translateY(-8px);
     border-color: var(--accent-primary);
     box-shadow:
-        0 0 10px var(--accent-primary),
-        inset 0 0 6px rgba(111, 216, 156, 0.08);
+        0 0 10px var(--shadow),
+        inset 0 0 6px var(--shadow);
 }
 
 .project-card.featured {
@@ -899,8 +899,8 @@ body::after {
     transform: translateX(8px);
     border-color: var(--accent-primary);
     box-shadow:
-        0 0 10px var(--accent-primary),
-        inset 0 0 6px rgba(111, 216, 156, 0.08);
+        0 0 10px var(--shadow),
+        inset 0 0 6px var(--shadow);
 }
 
 .timeline-date {
@@ -992,8 +992,8 @@ body::after {
     transform: translateY(-4px);
     border-color: var(--accent-primary);
     box-shadow:
-        0 0 10px var(--accent-primary),
-        inset 0 0 6px rgba(111, 216, 156, 0.08);
+        0 0 10px var(--shadow),
+        inset 0 0 6px var(--shadow);
 }
 
 .contact-icon {
@@ -1054,8 +1054,8 @@ body::after {
     border-color: var(--accent-primary);
     transform: translateY(-2px);
     box-shadow:
-        0 0 10px var(--accent-primary),
-        inset 0 0 6px rgba(111, 216, 156, 0.08);
+        0 0 10px var(--shadow),
+        inset 0 0 6px var(--shadow);
 }
 
 .social-link svg {
@@ -1230,8 +1230,8 @@ body::after {
     right: 0;
     bottom: 0;
     background-image:
-        linear-gradient(rgba(111, 216, 156, 0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(111, 216, 156, 0.02) 1px, transparent 1px);
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
     background-size: 50px 50px;
     pointer-events: none;
     z-index: -1;

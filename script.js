@@ -237,7 +237,7 @@ const skillItems = document.querySelectorAll('.skill-item');
 
 skillItems.forEach(item => {
     item.addEventListener('mouseenter', function() {
-        this.style.boxShadow = '0 0 20px rgba(0, 255, 136, 0.2)';
+        this.style.boxShadow = '0 0 20px rgba(255, 255, 255, 0.2)';
     });
 
     item.addEventListener('mouseleave', function() {
@@ -325,9 +325,9 @@ style.textContent = `
 document.head.appendChild(style);
 
 // Console Easter Egg
-console.log('%c👋 Hello, curious developer!', 'color: #00ff88; font-size: 20px; font-weight: bold;');
-console.log('%cI see you\'re checking out the code. Like what you see?', 'color: #00ccff; font-size: 14px;');
-console.log('%cLet\'s build something amazing together!', 'color: #00ff88; font-size: 14px;');
+console.log('%c👋 Hello, curious developer!', 'color: #ffffff; font-size: 20px; font-weight: bold;');
+console.log('%cI see you\'re checking out the code. Like what you see?', 'color: #d0d0d0; font-size: 14px;');
+console.log('%cLet\'s build something amazing together!', 'color: #ffffff; font-size: 14px;');
 console.log('%cEmail: cto.nector.iot@gmail.com', 'color: #a0a0a0; font-size: 12px;');
 
 // Performance: Reduce animations on mobile
