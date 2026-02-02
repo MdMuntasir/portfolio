@@ -137,6 +137,15 @@ body::after {
     .cursor, .cursor-follower {
         display: none;
     }
+
+    /* Fix theme toggle hover state on mobile */
+    .theme-toggle:hover {
+        transform: none;
+    }
+
+    .theme-toggle:active {
+        transform: scale(0.95);
+    }
 }
 
 /* Theme Toggle - Retro Style */
