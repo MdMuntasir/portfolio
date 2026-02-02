@@ -79,7 +79,7 @@ const commands = [
     'whoami',
     'cat skills.txt',
     'git log --projects',
-    'echo "Building the future with AI"'
+    'echo "Building efficient solutions"'
 ];
 
 let commandIndex = 0;
