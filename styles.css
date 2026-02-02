@@ -10,12 +10,10 @@
     --accent-secondary: #e0e0e0;
     --accent-gradient: linear-gradient(135deg, #ffffff 0%, #d0d0d0 100%);
     --border-color: #333333;
-    --shadow: rgba(255, 255, 255, 0.1);
     --terminal-bg: #000000;
     --terminal-border: #333333;
     --card-bg: #0a0a0a;
     --card-hover: #141414;
-    --glow: 0 0 8px rgba(255, 255, 255, 0.3);
 }
 
 [data-theme="light"] {
@@ -29,12 +27,10 @@
     --accent-secondary: #1a1a1a;
     --accent-gradient: linear-gradient(135deg, #000000 0%, #333333 100%);
     --border-color: #d0d0d0;
-    --shadow: rgba(0, 0, 0, 0.15);
     --terminal-bg: #ffffff;
     --terminal-border: #d0d0d0;
     --card-bg: #f5f5f5;
     --card-hover: #e8e8e8;
-    --glow: 0 0 8px rgba(0, 0, 0, 0.2);
 }
 
 * {
@@ -107,9 +103,6 @@ body::after {
     pointer-events: none;
     z-index: 10000;
     transition: all 0.05s ease;
-    box-shadow:
-        0 0 8px var(--accent-primary),
-        0 0 12px var(--accent-primary);
     image-rendering: pixelated;
 }
 
@@ -121,7 +114,6 @@ body::after {
     pointer-events: none;
     z-index: 10000;
     transition: all 0.2s ease;
-    box-shadow: 0 0 4px var(--accent-primary);
 }
 
 /* Hide all default cursors */
@@ -162,9 +154,6 @@ body::after {
     justify-content: center;
     z-index: 1000;
     transition: all 0.3s ease;
-    box-shadow:
-        0 0 6px var(--accent-primary),
-        inset 0 0 6px rgba(111, 216, 156, 0.1);
     clip-path: polygon(
         10% 0%, 90% 0%, 100% 10%, 100% 90%, 90% 100%, 10% 100%, 0% 90%, 0% 10%
     );
@@ -173,9 +162,6 @@ body::after {
 .theme-toggle:hover {
     transform: scale(1.15) rotate(5deg);
     border-color: var(--accent-primary);
-    box-shadow:
-        0 0 12px var(--shadow),
-        inset 0 0 10px var(--shadow);
 }
 
 .theme-toggle .sun-icon {
@@ -212,7 +198,6 @@ body::after {
     background: rgba(0, 0, 0, 0.95);
     backdrop-filter: blur(10px);
     border-bottom: 3px solid var(--border-color);
-    box-shadow: 0 5px 20px var(--shadow);
     z-index: 999;
     padding: 20px 0;
 }
@@ -241,7 +226,6 @@ body::after {
 
 .logo:hover {
     color: var(--accent-primary);
-    text-shadow: 0 0 8px var(--accent-primary);
 }
 
 .terminal-prompt {
@@ -279,13 +263,11 @@ body::after {
     width: 0;
     height: 2px;
     background: var(--accent-primary);
-    box-shadow: 0 0 10px var(--accent-primary);
     transition: width 0.3s ease;
 }
 
 .nav-link:hover {
     color: var(--accent-primary);
-    text-shadow: 0 0 6px var(--accent-primary);
 }
 
 .nav-link:hover::after {
@@ -313,9 +295,6 @@ body::after {
     background: var(--terminal-bg);
     border: 3px solid var(--terminal-border);
     overflow: hidden;
-    box-shadow:
-        0 0 12px var(--shadow),
-        inset 0 0 15px var(--shadow);
     clip-path: polygon(
         0% 5%, 5% 0%, 95% 0%, 100% 5%,
         100% 95%, 95% 100%, 5% 100%, 0% 95%
@@ -411,17 +390,6 @@ body::after {
 
 .gradient-text {
     color: var(--accent-primary);
-    text-shadow: 0 0 8px var(--accent-primary);
-    animation: glow 3s ease-in-out infinite alternate;
-}
-
-@keyframes glow {
-    from {
-        text-shadow: 0 0 6px var(--accent-primary);
-    }
-    to {
-        text-shadow: 0 0 10px var(--accent-primary);
-    }
 }
 
 .hero-subtitle {
@@ -458,7 +426,6 @@ body::after {
     background: var(--bg-secondary);
     color: var(--accent-primary);
     border: 3px solid var(--accent-primary);
-    box-shadow: 0 0 6px var(--accent-primary);
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -466,7 +433,6 @@ body::after {
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 0 12px var(--accent-primary);
     background: var(--accent-primary);
     color: var(--bg-primary);
 }
@@ -475,7 +441,6 @@ body::after {
     background: transparent;
     color: var(--accent-secondary);
     border: 3px solid var(--accent-secondary);
-    box-shadow: 0 0 6px var(--accent-secondary);
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -484,7 +449,6 @@ body::after {
 .btn-secondary:hover {
     background: var(--accent-secondary);
     color: var(--bg-primary);
-    box-shadow: 0 0 12px var(--accent-secondary);
 }
 
 .hero-stats {
@@ -501,7 +465,6 @@ body::after {
     font-size: 2.5rem;
     font-weight: 800;
     color: var(--accent-primary);
-    text-shadow: 0 0 8px var(--accent-primary);
 }
 
 .stat-label {
@@ -555,13 +518,11 @@ body::after {
         100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%,
         0% calc(100% - 10px), 0% 10px
     );
-    box-shadow: 0 0 8px var(--accent-primary);
     transition: all 0.3s ease;
 }
 
 .profile-image-wrapper:hover {
     transform: translateY(-4px);
-    box-shadow: 0 0 12px var(--accent-primary);
 }
 
 .profile-image {
@@ -631,9 +592,6 @@ body::after {
 .highlight-item:hover {
     transform: translateY(-4px);
     border-color: var(--accent-primary);
-    box-shadow:
-        0 0 10px var(--shadow),
-        inset 0 0 6px var(--shadow);
 }
 
 .highlight-icon {
@@ -673,9 +631,6 @@ body::after {
 .skill-category:hover {
     transform: translateY(-4px);
     border-color: var(--accent-primary);
-    box-shadow:
-        0 0 10px var(--shadow),
-        inset 0 0 6px var(--shadow);
 }
 
 .skill-category-title {
@@ -745,14 +700,10 @@ body::after {
 .project-card:hover {
     transform: translateY(-8px);
     border-color: var(--accent-primary);
-    box-shadow:
-        0 0 10px var(--shadow),
-        inset 0 0 6px var(--shadow);
 }
 
 .project-card.featured {
     border-color: var(--accent-primary);
-    box-shadow: 0 0 8px var(--accent-primary);
 }
 
 .project-header {
@@ -770,7 +721,6 @@ body::after {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
-    box-shadow: 0 0 6px var(--accent-primary);
 }
 
 .project-stats {
@@ -812,7 +762,6 @@ body::after {
 
 .tech-tag:hover {
     border-color: var(--accent-primary);
-    box-shadow: 0 0 6px var(--accent-primary);
 }
 
 .project-links {
@@ -863,24 +812,7 @@ body::after {
     width: 16px;
     height: 16px;
     background: var(--accent-primary);
-    box-shadow:
-        0 0 0 4px var(--bg-primary),
-        0 0 10px var(--accent-primary),
-        0 0 20px var(--accent-primary);
-    animation: pulse-dot 2s infinite;
-}
-
-@keyframes pulse-dot {
-    0%, 100% {
-        box-shadow:
-            0 0 0 4px var(--bg-primary),
-            0 0 6px var(--accent-primary);
-    }
-    50% {
-        box-shadow:
-            0 0 0 4px var(--bg-primary),
-            0 0 10px var(--accent-primary);
-    }
+    border: 4px solid var(--bg-primary);
 }
 
 .timeline-content {
@@ -898,9 +830,6 @@ body::after {
 .timeline-content:hover {
     transform: translateX(8px);
     border-color: var(--accent-primary);
-    box-shadow:
-        0 0 10px var(--shadow),
-        inset 0 0 6px var(--shadow);
 }
 
 .timeline-date {
@@ -991,9 +920,6 @@ body::after {
 .contact-item:hover {
     transform: translateY(-4px);
     border-color: var(--accent-primary);
-    box-shadow:
-        0 0 10px var(--shadow),
-        inset 0 0 6px var(--shadow);
 }
 
 .contact-icon {
@@ -1053,9 +979,6 @@ body::after {
 .social-link:hover {
     border-color: var(--accent-primary);
     transform: translateY(-2px);
-    box-shadow:
-        0 0 10px var(--shadow),
-        inset 0 0 6px var(--shadow);
 }
 
 .social-link svg {
@@ -1067,7 +990,6 @@ body::after {
     padding: 40px;
     background: var(--card-bg);
     border: 3px solid var(--border-color);
-    box-shadow: 0 0 8px var(--accent-primary);
     clip-path: polygon(
         15px 0%, calc(100% - 15px) 0%, 100% 15px,
         100% calc(100% - 15px), calc(100% - 15px) 100%, 15px 100%,
@@ -1088,7 +1010,6 @@ body::after {
 
 .contact-tagline strong {
     color: var(--accent-primary);
-    text-shadow: 0 0 6px var(--accent-primary);
 }
 
 /* Footer */
@@ -1260,11 +1181,10 @@ body::after {
     left: 0;
 }
 
-/* Skill item glow on hover */
+/* Skill item hover effect */
 .skill-item:hover {
-    box-shadow:
-        0 0 6px var(--accent-primary),
-        inset 0 0 4px var(--accent-primary);
+    background: var(--card-hover);
+    padding-left: 16px;
 }
 
 /* Button click animation */

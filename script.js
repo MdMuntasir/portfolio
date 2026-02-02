@@ -235,15 +235,7 @@ projectCards.forEach(card => {
 // Add glow effect to skill items on hover
 const skillItems = document.querySelectorAll('.skill-item');
 
-skillItems.forEach(item => {
-    item.addEventListener('mouseenter', function() {
-        this.style.boxShadow = '0 0 20px rgba(255, 255, 255, 0.2)';
-    });
-
-    item.addEventListener('mouseleave', function() {
-        this.style.boxShadow = '';
-    });
-});
+// Skill items hover is now handled by CSS only
 
 // Animate stats counter
 function animateCounter(element, target, duration = 2000) {
