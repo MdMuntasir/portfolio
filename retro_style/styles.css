@@ -112,7 +112,7 @@ body::after {
     position: fixed;
     pointer-events: none;
     z-index: 10000;
-    transition: all 0.05s ease;
+    transition: transform 0.05s ease, opacity 0.15s ease;
     image-rendering: pixelated;
     box-shadow: 0 0 10px var(--game-glow);
 }
@@ -124,7 +124,7 @@ body::after {
     position: fixed;
     pointer-events: none;
     z-index: 10000;
-    transition: all 0.2s ease;
+    transition: transform 0.2s ease, left 0.2s ease, top 0.2s ease, opacity 0.15s ease;
     box-shadow: 0 0 15px var(--game-glow);
     image-rendering: pixelated;
 }

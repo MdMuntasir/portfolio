@@ -253,6 +253,18 @@ document.querySelectorAll('a, button, .project-card, .skill-category, .contact-i
     el.addEventListener('mouseleave', () => { cursorScale = 1; followerScale = 1; });
 });
 
+const styleCarousel = document.getElementById('style-carousel');
+if (styleCarousel) {
+    styleCarousel.addEventListener('mouseenter', () => {
+        if (cursor) cursor.style.opacity = '0';
+        if (cursorFollower) cursorFollower.style.opacity = '0';
+    });
+    styleCarousel.addEventListener('mouseleave', () => {
+        if (cursor) cursor.style.opacity = '1';
+        if (cursorFollower) cursorFollower.style.opacity = '1';
+    });
+}
+
 // ─── Smooth scroll ───────────────────────────────────────────────────────────
 
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
