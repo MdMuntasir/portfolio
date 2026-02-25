@@ -4,13 +4,122 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Muntasir Hossain | Software Engineer</title>
-    <link rel="stylesheet" href="styles.css">
+
+    <!-- Active theme stylesheet (swapped by JS) -->
+    <link id="theme-stylesheet" rel="stylesheet" href="cli_style/styles.css">
+
+    <!-- All fonts loaded upfront for instant theme switching -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&family=Press+Start+2P&family=VT323&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* ── Hero widget visibility ── */
+        .terminal-window,
+        .game-console { display: none !important; }
+
+        body[data-style="cli"] .terminal-window {
+            display: flex !important;
+            flex-direction: column;
+        }
+        body[data-style="retro"] .game-console {
+            display: flex !important;
+            flex-direction: column;
+        }
+
+        /* ── Hide custom cursor in professional mode ── */
+        body[data-style="professional"] .cursor,
+        body[data-style="professional"] .cursor-follower {
+            display: none !important;
+        }
+
+        /* ── Style Carousel ── */
+        .style-carousel {
+            position: fixed;
+            bottom: 28px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            background: rgba(8, 8, 18, 0.88);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.10);
+            border-radius: 50px;
+            padding: 5px 6px;
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255,255,255,0.04);
+            user-select: none;
+            gap: 2px;
+        }
+
+        .carousel-arrow {
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.45);
+            font-size: 20px;
+            cursor: pointer;
+            padding: 4px 9px;
+            border-radius: 50px;
+            transition: color 0.18s, background 0.18s;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .carousel-arrow:hover {
+            color: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .carousel-items {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .carousel-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 13px;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: all 0.22s ease;
+            color: rgba(255, 255, 255, 0.45);
+            font-size: 11.5px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-weight: 500;
+            white-space: nowrap;
+            border: 1px solid transparent;
+            letter-spacing: 0.01em;
+        }
+        .carousel-item:hover {
+            color: rgba(255, 255, 255, 0.82);
+            background: rgba(255, 255, 255, 0.06);
+        }
+        .carousel-item.active {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.11);
+            border-color: rgba(255, 255, 255, 0.13);
+        }
+        .carousel-item .item-icon { font-size: 13px; }
+
+        .carousel-divider {
+            width: 1px;
+            height: 14px;
+            background: rgba(255, 255, 255, 0.09);
+            flex-shrink: 0;
+        }
+
+        /* ── Theme-switch fade ── */
+        body { transition: opacity 0.18s ease; }
+        body.style-fading { opacity: 0; }
+    </style>
 </head>
-<body>
-    <!-- Custom Cursor -->
+<body data-style="cli">
+
+    <!-- Custom Cursor (CSS hides in professional mode) -->
     <div class="cursor"></div>
     <div class="cursor-follower"></div>
 
@@ -35,7 +144,7 @@
     <!-- Navigation -->
     <nav class="nav">
         <div class="nav-container">
-            <a href="#" class="logo">
+            <a href="#" class="logo" id="nav-logo">
                 <span class="terminal-prompt">$</span> muntasir.dev
             </a>
             <div class="nav-links">
@@ -52,6 +161,8 @@
     <section class="hero" id="home">
         <div class="container">
             <div class="hero-content">
+
+                <!-- CLI: Terminal Widget -->
                 <div class="terminal-window">
                     <div class="terminal-header">
                         <div class="terminal-buttons">
@@ -64,25 +175,48 @@
                     <div class="terminal-body">
                         <div class="terminal-line">
                             <span class="terminal-prompt">$</span>
-                            <span class="terminal-command typed-text"></span>
+                            <span class="terminal-command" id="cli-typed"></span>
                             <span class="cursor-blink">|</span>
                         </div>
                         <div class="terminal-output" style="display: none;">
                             <p class="output-line">Initializing development environment...</p>
                             <p class="output-line">Loading capabilities: [Flutter, Python, TypeScript, Java, C]</p>
                             <p class="output-line">Status: Ready to build anything, anywhere ✓</p>
-                            <p class="output-line highlight">>>> "Engineering efficient solutions with modern tools"</p>
+                            <p class="output-line highlight">&gt;&gt;&gt; "Engineering efficient solutions with modern tools"</p>
                         </div>
                     </div>
                 </div>
 
+                <!-- Retro: Game Console Widget -->
+                <div class="game-console">
+                    <div class="console-header">
+                        <div class="console-title">⚡ PLAYER STATUS ⚡</div>
+                    </div>
+                    <div class="console-screen">
+                        <div class="pixel-text" id="retro-typed"></div>
+                        <span class="cursor-blink">▮</span>
+                        <div class="game-output" style="display: none;">
+                            <p class="output-line">🎮 INITIALIZING...</p>
+                            <p class="output-line">✨ LOADING SKILLS: Flutter • Python • TypeScript</p>
+                            <p class="output-line">⚡ STATUS: READY TO CODE!</p>
+                            <p class="output-line highlight">🏆 MISSION: Building Amazing Apps</p>
+                        </div>
+                    </div>
+                    <div class="console-footer">
+                        <div class="power-indicator">
+                            <span class="power-dot"></span>
+                            <span class="power-dot"></span>
+                            <span class="power-dot"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Text (all themes) -->
                 <div class="hero-text">
                     <h1 class="hero-title">
                         Hi, I'm <span class="gradient-text">Muntasir Hossain</span>
                     </h1>
-                    <h2 class="hero-subtitle">
-                        Software Engineer
-                    </h2>
+                    <h2 class="hero-subtitle">Software Engineer</h2>
                     <p class="hero-description">
                         Experienced software engineer specializing in full-stack development across mobile, web,
                         cloud, and IoT platforms. I leverage modern tools and AI assistants to maximize efficiency
@@ -107,6 +241,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
@@ -115,7 +250,7 @@
     <section class="section about" id="about">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">
+                <h2 class="section-title" id="about-title">
                     <span class="terminal-prompt">$</span> cat about.txt
                 </h2>
             </div>
@@ -127,7 +262,7 @@
                 </div>
                 <div class="about-text">
                     <p class="about-intro">
-                        Cloud Engineering Intern at <strong>Lintware Technologies</strong> and Co-founder & CTO
+                        Cloud Engineering Intern at <strong>Lintware Technologies</strong> and Co-founder &amp; CTO
                         of <strong>Nector</strong>, with hands-on experience designing, building, and deploying
                         cloud-native applications.
                     </p>
@@ -138,6 +273,27 @@
                         on code quality.
                     </p>
                     <div class="about-highlights">
+                        <div class="highlight-item">
+                            <span class="highlight-icon">🥉</span>
+                            <div>
+                                <strong>2nd Runner-Up</strong>
+                                <p>Poster Presentation at Beyond the Classroom</p>
+                            </div>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">🏆</span>
+                            <div>
+                                <strong>Champion</strong>
+                                <p>Patent &amp; Idea Competition 2025</p>
+                            </div>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">🥇</span>
+                            <div>
+                                <strong>Gold Medalist</strong>
+                                <p>Innovation World Cup 2026</p>
+                            </div>
+                        </div>
                         <div class="highlight-item">
                             <span class="highlight-icon">🏆</span>
                             <div>
@@ -162,10 +318,10 @@
     <section class="section skills" id="skills">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">
+                <h2 class="section-title" id="skills-title">
                     <span class="terminal-prompt">$</span> ls -la skills/
                 </h2>
-                <p class="section-subtitle">Technologies and tools I work with</p>
+                <p class="section-subtitle" id="skills-subtitle">Technologies and tools I work with</p>
             </div>
             <div class="skills-grid">
                 <div class="skill-category">
@@ -194,7 +350,7 @@
 
                 <div class="skill-category">
                     <h3 class="skill-category-title">
-                        <span class="folder-icon">☁️</span> Cloud & Backend
+                        <span class="folder-icon">☁️</span> Cloud &amp; Backend
                     </h3>
                     <div class="skill-items">
                         <div class="skill-item">
@@ -242,7 +398,7 @@
 
                 <div class="skill-category">
                     <h3 class="skill-category-title">
-                        <span class="folder-icon">🤖</span> IoT & Systems
+                        <span class="folder-icon">🤖</span> IoT &amp; Systems
                     </h3>
                     <div class="skill-items">
                         <div class="skill-item">
@@ -266,11 +422,11 @@
 
                 <div class="skill-category">
                     <h3 class="skill-category-title">
-                        <span class="folder-icon">🎯</span> AI & Tools
+                        <span class="folder-icon">🎯</span> AI &amp; Tools
                     </h3>
                     <div class="skill-items">
                         <div class="skill-item">
-                            <span class="skill-name">AI Tools & Automation</span>
+                            <span class="skill-name">AI Tools &amp; Automation</span>
                             <span class="skill-level">Expert</span>
                         </div>
                         <div class="skill-item">
@@ -295,13 +451,12 @@
     <section class="section projects" id="projects">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">
+                <h2 class="section-title" id="projects-title">
                     <span class="terminal-prompt">$</span> git log --projects
                 </h2>
-                <p class="section-subtitle">Featured projects from my GitHub portfolio</p>
+                <p class="section-subtitle" id="projects-subtitle">Featured projects from my GitHub portfolio</p>
             </div>
             <div class="projects-grid">
-                <!-- Daily DIU -->
                 <div class="project-card featured">
                     <div class="project-header">
                         <span class="project-tag">⭐ Most Popular</span>
@@ -313,7 +468,7 @@
                     <h3 class="project-title">Daily DIU</h3>
                     <p class="project-description">
                         Comprehensive university mobile app with routine management, result analysis, and
-                        real-time updates. Published on Google Play Store with Flutter & Firebase.
+                        real-time updates. Published on Google Play Store with Flutter &amp; Firebase.
                     </p>
                     <div class="project-tech">
                         <span class="tech-tag">Flutter</span>
@@ -328,7 +483,6 @@
                     </div>
                 </div>
 
-                <!-- vote_it -->
                 <div class="project-card featured">
                     <div class="project-header">
                         <span class="project-tag">🚀 Latest</span>
@@ -351,7 +505,6 @@
                     </div>
                 </div>
 
-                <!-- Carry Bot -->
                 <div class="project-card">
                     <div class="project-header">
                         <span class="project-tag">🤖 IoT</span>
@@ -374,7 +527,6 @@
                     </div>
                 </div>
 
-                <!-- Social Service -->
                 <div class="project-card">
                     <div class="project-header">
                         <span class="project-tag">☕ Enterprise</span>
@@ -397,7 +549,6 @@
                     </div>
                 </div>
 
-                <!-- DIU Routine -->
                 <div class="project-card">
                     <div class="project-header">
                         <span class="project-tag">⭐ Featured</span>
@@ -423,7 +574,6 @@
                     </div>
                 </div>
 
-                <!-- IOT Sensor Viewer -->
                 <div class="project-card">
                     <div class="project-header">
                         <span class="project-tag">📊 Data Viz</span>
@@ -458,7 +608,7 @@
     <section class="section experience" id="experience">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">
+                <h2 class="section-title" id="experience-title">
                     <span class="terminal-prompt">$</span> history --work
                 </h2>
             </div>
@@ -467,7 +617,7 @@
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
                         <div class="timeline-date">May 2025 - Present</div>
-                        <h3 class="timeline-title">Co-founder & CTO</h3>
+                        <h3 class="timeline-title">Co-founder &amp; CTO</h3>
                         <h4 class="timeline-company">Nector</h4>
                         <ul class="timeline-list">
                             <li>Developed the Nector mobile application from ground up</li>
@@ -504,10 +654,10 @@
     <section class="section contact" id="contact">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">
+                <h2 class="section-title" id="contact-title">
                     <span class="terminal-prompt">$</span> connect --with muntasir
                 </h2>
-                <p class="section-subtitle">Let's build something amazing together</p>
+                <p class="section-subtitle" id="contact-subtitle">Let's build something amazing together</p>
             </div>
             <div class="contact-content">
                 <div class="contact-info">
@@ -565,15 +715,37 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <p class="footer-text">
+                <p class="footer-text" id="footer-text">
                     <span class="terminal-prompt">$</span> Built by Muntasir Hossain
                 </p>
-                <p class="footer-copyright">
+                <p class="footer-copyright" id="footer-copyright">
                     © 2026 Muntasir Hossain. Software Engineer.
                 </p>
             </div>
         </div>
     </footer>
+
+    <!-- Style Carousel Navigator -->
+    <div class="style-carousel" id="style-carousel">
+        <button class="carousel-arrow" id="carousel-prev" aria-label="Previous style">&#8249;</button>
+        <div class="carousel-items">
+            <div class="carousel-item active" data-style="cli">
+                <span class="item-icon">⌨️</span>
+                <span>CLI</span>
+            </div>
+            <div class="carousel-divider"></div>
+            <div class="carousel-item" data-style="professional">
+                <span class="item-icon">💼</span>
+                <span>Professional</span>
+            </div>
+            <div class="carousel-divider"></div>
+            <div class="carousel-item" data-style="retro">
+                <span class="item-icon">🎮</span>
+                <span>Retro</span>
+            </div>
+        </div>
+        <button class="carousel-arrow" id="carousel-next" aria-label="Next style">&#8250;</button>
+    </div>
 
     <script src="script.js"></script>
 </body>
