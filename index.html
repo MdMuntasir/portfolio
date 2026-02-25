@@ -119,6 +119,27 @@
         /* ── Theme-switch fade ── */
         body { transition: opacity 0.18s ease; }
         body.style-fading { opacity: 0; }
+
+        /* ── Carousel mobile ── */
+        @media (max-width: 480px) {
+            .style-carousel {
+                bottom: 16px;
+                padding: 4px 4px;
+                gap: 1px;
+            }
+            .carousel-item {
+                padding: 5px 8px;
+                font-size: 10px;
+                gap: 4px;
+            }
+            .carousel-arrow {
+                padding: 4px 6px;
+                font-size: 16px;
+            }
+            .carousel-item .item-icon {
+                font-size: 11px;
+            }
+        }
     </style>
 </head>
 <body data-style="cli">
